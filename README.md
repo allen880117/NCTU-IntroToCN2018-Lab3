@@ -18,6 +18,24 @@ In this lab, we are going to write a Python program with Ryu SDN framework to bu
 
 > TODO:
 > * How to run your program?
+```bash
+# Change directory to where files at
+$ cd src/
+
+# Execute Topo First
+
+# Execute SimpleTopo.py
+$ [sudo] mn --custom SimpleTopo.py --topo topo --link tc --controller remote
+# Or Execute topo.py
+$ [sudo] mn --custom topo.py --topo topo --link tc --controller remote
+
+# Then Execute Controller "at another terminal"
+
+# Execute SimpleController.py
+$ [sudo] ryu-manager SimpleController.py --observe-links
+# Or Execute controller.py
+$ [sudo] ryu-manager controller.py --observe-links 
+```
 > * What is the meaning of the executing command (both Mininet and Ryu controller)?
 > * Show the screenshot of using iPerf command in Mininet (both `SimpleController.py` and `controller.py`)
 
