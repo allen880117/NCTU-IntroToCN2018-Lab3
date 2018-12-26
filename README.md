@@ -85,8 +85,6 @@ $ [sudo] ryu-manager controller.py --observe-links
         > ```    
     
 2. **Example of Ryu SDN**
-    >![Ryu_Topo](https://github.com/nctucn/lab3-allen880117/blob/master/src/topo/topo.png)
-
     1. Run Mininet topology 
     >Run `SimpleTopo.py` in one terminal `FIRST`
     > ```bash
@@ -103,7 +101,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > ```
     > won't affect this lab.
 
-    2. Run Ryu manager with controller
+    1. Run Ryu manager with controller
     > Run `SimpleController.py` in `ANOTHER` terminal
     > ```bash
     > # Change the directory into /root/Route_Configuration/src/
@@ -113,7 +111,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > ```
     > ![Ryu](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Ryu.png)
 
-    3. How to leave the Ryu controller
+    1. How to leave the Ryu controller
     > Leave SimpleTopo.py in one terminal `first`
     > ```bash
     > #Leave the Mininet CLI
@@ -137,7 +135,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > $ cp SimpleTopo.py topo.py
     > ```
 
-    2. Add the constraints
+    1. Add the constraints
     > Follow the image shows below <br> 
     > ![Ryu_Topo](https://github.com/nctucn/lab3-allen880117/blob/master/src/topo/topo.png)
     > ```py
@@ -150,7 +148,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > self.addLink(s3, s2, port1=3, port2=2, bw = 20, delay = '2ms', loss = 1)
     > ```
 
-    3. Run Mininet topology and controller
+    1. Run Mininet topology and controller
     > Run `topo.py` in one termial `FIRST`
     > ```bash
     > # Run the topo.py with Mininet
@@ -168,6 +166,33 @@ $ [sudo] ryu-manager controller.py --observe-links
     > ```
 
 4. **Ryu Controller**
+    1. Trace the code of Ryu controller
+    > Below is the `only` part which we should modify.
+    > ```py
+    >class SimpleController1(app_manager.RyuApp):
+    >   #...
+    >   
+    >   '''
+    >   METHOD : switch_features_handler (@set_ev_cls)
+    >   Handle the initial feature of each switch
+    >   '''
+    >   @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
+    >   def switch_features_handler(self, ev):
+    >
+    >   #...
+    > ```
+
+    2. Write another Ryu controller
+    > Duplicate the example code `SimpleController.py` and name it `controller.py`.
+    > ```bash
+    > # Make sure the current directory is /root/Route_Configuration/src/
+    > $ cp SimpleController.py controller.py
+    > ```
+
+    3. Follow the forwarding rules in the below image and modify `controller.py`.
+    > ![Forwarding](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Forwarding.png)
+    > ![msg1](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/msg1.png)
+    > ![msg23](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/msg23.png)
 
 5. **Measurement**
 
