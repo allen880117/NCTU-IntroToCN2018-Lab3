@@ -51,15 +51,125 @@ $ [sudo] ryu-manager controller.py --observe-links
 > TODO:
 > * Describe how you finish this work in detail
 
-1. Environment Setup
+1. **Environment Setup**
+    1. Login to my container using SSH
+        1. Open the PieTTY ( Putty is also OK ) and connect to my container
+            > * IP address : 140.113.195.69
+            > * Port : 16309
+        2. Login as root
+            > * Login : root
+            > * Password : cn2018
+        3. For protecting my own work
+            > ```bash
+            > # Change password
+            > $ passwd
+            > Enter new UNIX password: <NewPassword> 
+            > Retype new UNIX password: <NewPassword>
+            > ```
 
-2. Example of Ryu SDN
+    2. Clone my GitHub repository to "Route_Configuration"
+        > ```bash
+        > # Clone my GitHub repository to "Route_Configuration"
+        > $ git clone https://github.com/nctucn/lab3-allen880117.git Route_Configuration
+        > ```
 
-3. Mininet Topology
+    3. Run Mininet for testing
+        > the first time we execute the mininet, we will face a problem, that is a service didn't start. <br>
+        > This is the image from lab2.
+        > ![Screenshot_problem_1](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_problem_1.png)
 
-4. Ryu Controller
+        > to solve the problem, just start the service
+        > ```bash
+        > # Start the service of Open vSwitch
+        > $ [sudo] service openvswitch-switch start
+        > ```    
+    
+2. **Example of Ryu SDN**
+    >![Ryu_Topo](https://github.com/nctucn/lab3-allen880117/blob/master/src/topo/topo.png)
 
-5. Measurement
+    1. Run Mininet topology 
+    >Run `SimpleTopo.py` in one terminal `FIRST`
+    > ```bash
+    > # Change the directory into
+    > # /root/Route_Configuration/src/
+    > $ cd /root/Route_Configuration/src/
+    > # Run the SimpleTopo.py with Mininet
+    > $ [sudo] mn --custom SimpleTopo.py --topo topo --link tc --controller remote
+    > ```
+    > ![Mininet](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Mininet.png) <br>
+    > The error message,
+    > ```bash
+    > "Error setting resource limits. Mininet's performance may be affected."
+    > ```
+    > won't affect this lab.
+
+    2. Run Ryu manager with controller
+    > Run `SimpleController.py` in `ANOTHER` terminal
+    > ```bash
+    > # Change the directory into /root/Route_Configuration/src/
+    > $ cd /root/Route_Configuration/src/
+    > # Run the SimpleController.py with Ryu manager
+    > $ [sudo] ryu-manager SimpleController.py --observe-links
+    > ```
+    > ![Ryu](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Ryu.png)
+
+    3. How to leave the Ryu controller
+    > Leave SimpleTopo.py in one terminal `first`
+    > ```bash
+    > #Leave the Mininet CLI
+    > mininet> exit
+    > #Clean
+    > $ [sudo] mn -c
+    > ```
+    > Then, leave SimpleController.py in another termianl.
+    > ```bash
+    > # Leave the Ryu-manager
+    > Ctrl-z
+    > # Make sure "RTNETLINK" is clean indeed
+    > $ [sudo] mn -c
+    > ```
+
+3. **Mininet Topology**
+    1. Build the topology via Mininet
+    > Duplicate the example code `SimpleTopo.py` and name it `topo.py`
+    > ```bash
+    > # Make sure the current directory is /root/Route_Configuration/src/
+    > $ cp SimpleTopo.py topo.py
+    > ```
+
+    2. Add the constraints
+    > Follow the image shows below <br> 
+    > ![Ryu_Topo](https://github.com/nctucn/lab3-allen880117/blob/master/src/topo/topo.png)
+    > ```py
+    > # Modify the code below to meet the requirements
+    > # Add links into topology
+    > self.addLink(s1, h1, port1=1, port2=1)
+    > self.addLink(s3, h2, port1=1, port2=1)
+    > self.addLink(s1, s3, port1=3, port2=2, bw = 10, delay = '5ms', loss = 2)
+    > self.addLink(s1, s2, port1=2, port2=1, bw = 30, delay = '2ms', loss = 1)
+    > self.addLink(s3, s2, port1=3, port2=2, bw = 20, delay = '2ms', loss = 1)
+    > ```
+
+    3. Run Mininet topology and controller
+    > Run `topo.py` in one termial `FIRST`
+    > ```bash
+    > # Run the topo.py with Mininet
+    > $ [sudo] mn --custom topo.py --topo topo --link tc --controller remote
+    > ```
+    > Then, run `SimpleController.py` in `ANOTHER` terminal
+    > ```bash
+    > # Run the SimpleController.py with Ryu Manager
+    > $ [sudo] ryu-manager SimpleController.py --observe-links
+    > ```
+    > You can ping each link respectively by using the following command in the Mininet's CLI mode
+    > ```bash
+    > # Example of testing the connectivity between h1 and h2
+    > mininet> h1 ping h2
+    > ```
+
+4. **Ryu Controller**
+
+5. **Measurement**
 
 ### Discussion
 
