@@ -114,9 +114,9 @@ $ [sudo] ryu-manager controller.py --observe-links
     1. How to leave the Ryu controller
     > Leave SimpleTopo.py in one terminal `first`
     > ```bash
-    > #Leave the Mininet CLI
+    > # Leave the Mininet CLI
     > mininet> exit
-    > #Clean
+    > # Make sure "RTNETLINK" is clean indeed
     > $ [sudo] mn -c
     > ```
     > Then, leave SimpleController.py in another termianl.
@@ -195,7 +195,78 @@ $ [sudo] ryu-manager controller.py --observe-links
     > ![msg23](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/msg23.png)
 
 5. **Measurement**
+    1. Run topology with SimpleController.py
+    > Run `topo.py` in one terminal `FIRST`.
+    > ```bash
+    > # Make sure the current directory is /root/Route_Configuration/src/ 
+    > # Run the topo.py with Mininet
+    > $ [sudo] mn --custom topo.py --topo topo --link tc --controller remote
+    > ```
+    > Then, run `SimpleController.py` in `ANOTHER` terminal.
+    > ```bash
+    > # Make sure the current directory is /root/Route_Configuration/src/
+    > # Run the SimpleController.py with Ryu manager
+    > $ [sudo] ryu-manager SimpleController.py --observe-links
+    > ```
 
+    2. Measure the bandwidth
+    > Use the following `iPerf commands` to measure the bandwidth in my network.
+    > ```bash
+    > # Run in the iPerf command in Mininet CLI
+    > mininet> h1 iperf -s -u -i 1 -p 5566 > ./out/result1 &
+    > mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566
+    > ```
+    > Leave `topo.py` in one termial `FIRST`.
+    > ```bash
+    > # Leave the Mininet CLI
+    > mininet> exit
+    > # Make sure "RTNETLINK" is clean indeed
+    > $ [sudo] mn -c
+    > ```
+    > Then, leave `SimpleController.py` in `ANOTHER` terminal.
+    > ```bash
+    > # Leave the Ryu manager
+    > Ctrl-z
+    > # Make sure "RTNETLINK" is clean indeed
+    > $ [sudo] mn -c
+    > ```
+
+    3. Run topology with SimpleController.py
+    > Run `topo.py` in one terminal `FIRST`.
+    > ```bash
+    > # Make sure the current directory is /root/Route_Configuration/src/
+    > # Run the topo.py with Mininet
+    > $ [sudo] mn --custom topo.py --topo topo --link tc --controller remote
+    > ```
+    > Then, run `controller.py` in `ANOTHER` terminal.
+    > ```bash
+    > # Make sure the current directory is /root/Route_Configuration/src/
+    > # Run the SimpleController.py with Ryu manager
+    > $ [sudo] ryu-manager controller.py --observe-links
+    > ```
+
+    4. Measure the bandwidth
+    > Use the following `iPerf commands` to measure the bandwidth in my network.
+    > ```bash
+    > # Run in the iPerf command in Mininet CLI
+    > mininet> h1 iperf -s -u -i 1 -p 5566 > ./out/result2 &
+    > mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566
+    > ```
+    > Leave `topo.py` in one termial `FIRST`.
+    > ```bash
+    > # Leave the Mininet CLI
+    > mininet> exit
+    > # Make sure "RTNETLINK" is clean indeed
+    > $ [sudo] mn -c
+    > ```
+    > Then, leave `controller.py` in `ANOTHER` terminal.
+    > ```bash
+    > # Leave the Ryu manager
+    > Ctrl-z
+    > # Make sure "RTNETLINK" is clean indeed
+    > $ [sudo] mn -c
+    > ```
+    
 ### Discussion
 
 > TODO:
