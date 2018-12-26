@@ -191,7 +191,7 @@ $ [sudo] ryu-manager controller.py --observe-links
 
     3. Follow the forwarding rules in the below image and modify `controller.py`.
     > ![Forwarding](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Forwarding.png)
-    > ![msg1](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/msg1.png) <br>
+    > ![msg1](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/msg1.png)
     > ![msg23](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/msg23.png)
 
 5. **Measurement**
