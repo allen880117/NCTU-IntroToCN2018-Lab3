@@ -38,7 +38,9 @@ $ [sudo] ryu-manager controller.py --observe-links
 ```
 > * What is the meaning of the executing command (both Mininet and Ryu controller)?
 > * Show the screenshot of using iPerf command in Mininet (both `SimpleController.py` and `controller.py`)
-
+>> ![Screenshot_iPerf](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf_cut.png) 
+<br>
+>> ![Screenshot_iPerf2](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf2_cut.png)
 ---
 ## Description
 
