@@ -305,8 +305,8 @@ $ [sudo] ryu-manager controller.py --observe-links
     @set_ev_cls(ofp_event.EventOFPPacketIn, CONFIG_DISPATCHER)
     ```
     > `set_ev_cls`: Specifies the event class supporting the received message and the state of the OpenFlow switch for the argument (指定事件類別得以接受訊息和交換器狀態作為參數). <br>
-    > `ofp_event.EventOFPPacketIn` : Event of Packet-In message (Packet-In 訊息的狀態下的事件). <br> 
-    > `CONFIG_DISPATCHER` : Version negotiated and sent features-request message (版本協議以及送出 feature-request 訊息).
+    > `ofp_event.EventOFPPacketIn` : Event of Packet-In message (Packet-In訊息的狀態下的事件). <br> 
+    > `CONFIG_DISPATCHER` : Waiting to receive SwitchFeatures message (等待接收SwitchFeatures訊息).
 
 5. What is the meaning of “datapath” in `controller.py`?
    > The switch in the topology using OpenFlow.
@@ -315,7 +315,11 @@ $ [sudo] ryu-manager controller.py --observe-links
     > Since we use `UDP` to transist and the IP protocol number `17` is `UDP`, so we set `ip_proto=17`.
    
 7. Compare the differences between the iPerf results of `SimpleController.py` and `controller.py` in detail.
-   
+    > ![result1and2](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/result1and2.png) <br>
+    > |    |SimpleController.py|controller.py|
+    > |--- |-------------------|-------------|
+    > |Lost|20|26
+
 8. Which forwarding rule is better? Why?
 
 ---
