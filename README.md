@@ -56,9 +56,9 @@ $ [sudo] ryu-manager controller.py --observe-links
 >><br>
 
 > * Show the screenshot of using iPerf command in Mininet (both `SimpleController.py` and `controller.py`) <br>
->>* SimpleController.py <br>
+>>* `SimpleController.py` <br>
 >>![Screenshot_iPerf](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf_cut.png) <br>
->>* controller.py <br>
+>>* `controller.py` <br>
 >>![Screenshot_iPerf2](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf2_cut.png)
 
 ---
@@ -315,7 +315,11 @@ $ [sudo] ryu-manager controller.py --observe-links
     > Since we use `UDP` to transist and the IP protocol number `17` is `UDP`, so we set `ip_proto=17`.
    
 7. Compare the differences between the iPerf results of `SimpleController.py` and `controller.py` in detail.
-    > ![result1and2](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/result1and2.png) <br>
+    >* `SimpleController.py` <br>
+    >![Screenshot_iPerf](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf_cut.png) <br>
+    >* `controller.py` <br>
+    >![Screenshot_iPerf2](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf2_cut.png)
+    >
     > |    |SimpleController.py|controller.py|
     > |--- |-------------------|-------------|
     > |Lost|20|26
