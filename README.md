@@ -36,12 +36,30 @@ $ [sudo] ryu-manager SimpleController.py --observe-links
 # Or Execute controller.py
 $ [sudo] ryu-manager controller.py --observe-links 
 ```
-> * What is the meaning of the executing command (both Mininet and Ryu controller)?
-> * Show the screenshot of using iPerf command in Mininet (both `SimpleController.py` and `controller.py`)
->> SimpleController.py <br>
->> ![Screenshot_iPerf](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf_cut.png) <br>
->> controller.py <br>
->> ![Screenshot_iPerf2](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf2_cut.png)
+> * What is the meaning of the executing command (both Mininet and Ryu controller)? <br>
+>>* `Mininet`:
+>>
+>>| Commands | Explanation |
+>>| --- | --- |
+>>| mn  | Execute mininet |
+>>| --custom SimpleTopo.py | Use customized net topo of SimpleTopo.py |
+>>| --custom Topo.py       | Use customized net topo of Topo.py |
+>>| --topo   Topo          | Use "Topo" as mininet's netwrok topology |
+>>| --link   tc            | Use "tc link" for network |
+>>| --controller remote    | Use "remote controller" for network, in this case, it will use the Ryu contoller we defined in SimpleController.py or controller.py | 
+>>* `Ryu controller`:
+>>  
+>>| Commands | Explanation |
+>>| --- | --- |
+>>| ryu-manager SimpleController.py | Execute Ryu controller with SimpleController.py |
+>>| --observe-links | Observe link discovery events |
+>><br>
+
+> * Show the screenshot of using iPerf command in Mininet (both `SimpleController.py` and `controller.py`) <br>
+>SimpleController.py <br>
+>![Screenshot_iPerf](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf_cut.png) <br>
+>controller.py <br>
+>![Screenshot_iPerf2](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf2_cut.png)
 
 ---
 ## Description
@@ -182,14 +200,14 @@ $ [sudo] ryu-manager controller.py --observe-links
     >   #...
     > ```
 
-    2. Write another Ryu controller
+    1. Write another Ryu controller
     > Duplicate the example code `SimpleController.py` and name it `controller.py`.
     > ```bash
     > # Make sure the current directory is /root/Route_Configuration/src/
     > $ cp SimpleController.py controller.py
     > ```
 
-    3. Follow the forwarding rules in the below image and modify `controller.py`.
+    1. Follow the forwarding rules in the below image and modify `controller.py`.
     > ![Forwarding](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Forwarding.png)
     > ![msg1](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/msg1.png)
     > ![msg23](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/msg23.png)
@@ -209,7 +227,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > $ [sudo] ryu-manager SimpleController.py --observe-links
     > ```
 
-    2. Measure the bandwidth
+    1. Measure the bandwidth
     > Use the following `iPerf commands` to measure the bandwidth in my network.
     > ```bash
     > # Run in the iPerf command in Mininet CLI
@@ -231,7 +249,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > $ [sudo] mn -c
     > ```
 
-    3. Run topology with SimpleController.py
+    1. Run topology with SimpleController.py
     > Run `topo.py` in one terminal `FIRST`.
     > ```bash
     > # Make sure the current directory is /root/Route_Configuration/src/
@@ -245,7 +263,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > $ [sudo] ryu-manager controller.py --observe-links
     > ```
 
-    4. Measure the bandwidth
+    1. Measure the bandwidth
     > Use the following `iPerf commands` to measure the bandwidth in my network.
     > ```bash
     > # Run in the iPerf command in Mininet CLI
@@ -307,6 +325,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     * [GitHub - Ryu Controller 教學專案](https://github.com/OSE-Lab/Learning-SDN/blob/master/Controller/Ryu/README.md)
     * [Ryu SDN 指南 – Pengfei Ni](https://feisky.gitbooks.io/sdn/sdn/ryu.html)
     * [OpenFlow 通訊協定](https://osrg.github.io/ryu-book/zh_tw/html/openflow_protocol.html)
+    * [ryu-manager manual page](https://ryu-zhdoc.readthedocs.io/man/ryu_manager.html?highlight=observe)
 * **Python**
     * [Python 2.7.15 Standard Library](https://docs.python.org/2/library/index.html)
     * [Python Tutorial - Tutorialspoint](https://www.tutorialspoint.com/python/)
