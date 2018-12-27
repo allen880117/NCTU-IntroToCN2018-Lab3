@@ -291,20 +291,28 @@ $ [sudo] ryu-manager controller.py --observe-links
 > * Answer the following questions
 
 1. Describe the difference between packet-in and packet-out in detail.
-   
+    > `Packet-in` : Transfers the received packets to the controller. <br>
+    > `Packet-out`: Transfers the packets forwarded by the controller from the specified port.
+
 2. What is “table-miss” in SDN?
+    > If a package can't find a matched Flow Entry in Flow Table, this is called table-miss.
    
 3. Why is "`(app_manager.RyuApp)`" adding after the declaration of class in `controller.py`?
-   
+   > Because `class SimpleController1` needs to inherit `class app_manager.RyuApp` from `ryu.base`.
+
 4. Explain the following code in `controller.py`.
     ```python
     @set_ev_cls(ofp_event.EventOFPPacketIn, CONFIG_DISPATCHER)
     ```
+    > `set_ev_cls`: Specifies the event class supporting the received message and the state of the OpenFlow switch for the argument (指定事件類別得以接受訊息和交換器狀態作為參數). <br>
+    > `ofp_event.EventOFPPacketIn` : Event of Packet-In message. <br> 
+    > `CONFIG_DISPATCHER` : Version negotiated and sent features-request message (版本協議以及送出 feature-request 訊息).
 
 5. What is the meaning of “datapath” in `controller.py`?
-   
+   > The switch in the topology using OpenFlow.
+
 6. Why need to set "`ip_proto=17`" in the flow entry?
-    > The IP protocol number `17` is `UDP`.
+    > Since we use `UDP` to transist and the IP protocol number `17` is `UDP`, so we set `ip_proto=17`.
    
 7. Compare the differences between the iPerf results of `SimpleController.py` and `controller.py` in detail.
    
@@ -318,14 +326,17 @@ $ [sudo] ryu-manager controller.py --observe-links
 
 * **Ryu SDN**
     * [Ryubook Documentation](https://osrg.github.io/ryu-book/en/html/)
+    * [交換器（ Switching Hub ）- Ryubook 1.0說明文件](https://osrg.github.io/ryu-book/zh_tw/html/switching_hub.html)
     * [Ryubook [PDF]](https://osrg.github.io/ryu-book/en/Ryubook.pdf)
     * [Ryu 4.30 Documentation](https://github.com/mininet/mininet/wiki/Introduction-to-Mininet)
     * [Ryu Controller Tutorial](http://sdnhub.org/tutorials/ryu/)
+    * [Ryu API Reference](https://ryu.readthedocs.io/en/latest/api_ref.html)
     * [OpenFlow 1.3 Switch Specification](https://www.opennetworking.org/wp-content/uploads/2014/10/openflow-spec-v1.3.0.pdf)
     * [Ryubook 說明文件](https://osrg.github.io/ryu-book/zh_tw/html/)
     * [GitHub - Ryu Controller 教學專案](https://github.com/OSE-Lab/Learning-SDN/blob/master/Controller/Ryu/README.md)
     * [Ryu SDN 指南 – Pengfei Ni](https://feisky.gitbooks.io/sdn/sdn/ryu.html)
     * [OpenFlow 通訊協定](https://osrg.github.io/ryu-book/zh_tw/html/openflow_protocol.html)
+    * [OpenFlow 協定 API](https://ryu-zhdoc.readthedocs.io/ofproto_ref.html#ofproto-ref)
     * [ryu-manager manual page](https://ryu-zhdoc.readthedocs.io/man/ryu_manager.html?highlight=observe)
 * **Python**
     * [Python 2.7.15 Standard Library](https://docs.python.org/2/library/index.html)
@@ -341,7 +352,7 @@ $ [sudo] ryu-manager controller.py --observe-links
 > TODO:
 > * Please replace "`YOUR_NAME`" and "`YOUR_GITHUB_LINK`" into yours
 
-* [YOUR_NAME](YOUR_GITHUB_LINK)
+* [Xiang-ren Wang](https://github.com/allen880117)
 * [David Lu](https://github.com/yungshenglu)
 
 ---
