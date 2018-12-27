@@ -304,6 +304,7 @@ $ [sudo] ryu-manager controller.py --observe-links
 5. What is the meaning of “datapath” in `controller.py`?
    
 6. Why need to set "`ip_proto=17`" in the flow entry?
+    > The IP protocol number `17` is `UDP`.
    
 7. Compare the differences between the iPerf results of `SimpleController.py` and `controller.py` in detail.
    
