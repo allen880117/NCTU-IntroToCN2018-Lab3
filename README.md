@@ -84,18 +84,16 @@ $ [sudo] ryu-manager controller.py --observe-links
             > Enter new UNIX password: <NewPassword> 
             > Retype new UNIX password: <NewPassword>
             > ```
-
     2. Clone my GitHub repository to "Route_Configuration"
         > ```bash
         > # Clone my GitHub repository to "Route_Configuration"
         > $ git clone https://github.com/nctucn/lab3-allen880117.git Route_Configuration
         > ```
-
     3. Run Mininet for testing
         > the first time we execute the mininet, we will face a problem, that is a service didn't start. <br>
         > This is the image from lab2.
         > ![Screenshot_problem_1](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_problem_1.png)
-
+        >
         > to solve the problem, just start the service
         > ```bash
         > # Start the service of Open vSwitch
@@ -118,8 +116,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > "Error setting resource limits. Mininet's performance may be affected."
     > ```
     > won't affect this lab.
-
-    1. Run Ryu manager with controller
+    2. Run Ryu manager with controller
     > Run `SimpleController.py` in `ANOTHER` terminal
     > ```bash
     > # Change the directory into /root/Route_Configuration/src/
@@ -128,8 +125,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > $ [sudo] ryu-manager SimpleController.py --observe-links
     > ```
     > ![Ryu](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Ryu.png)
-
-    1. How to leave the Ryu controller
+    3. How to leave the Ryu controller
     > Leave SimpleTopo.py in one terminal `first`
     > ```bash
     > # Leave the Mininet CLI
@@ -152,8 +148,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > # Make sure the current directory is /root/Route_Configuration/src/
     > $ cp SimpleTopo.py topo.py
     > ```
-
-    1. Add the constraints
+    2. Add the constraints
     > Follow the image shows below <br> 
     > ![Ryu_Topo](https://github.com/nctucn/lab3-allen880117/blob/master/src/topo/topo.png)
     > ```py
@@ -165,8 +160,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > self.addLink(s1, s2, port1=2, port2=1, bw = 30, delay = '2ms', loss = 1)
     > self.addLink(s3, s2, port1=3, port2=2, bw = 20, delay = '2ms', loss = 1)
     > ```
-
-    1. Run Mininet topology and controller
+    3. Run Mininet topology and controller
     > Run `topo.py` in one termial `FIRST`
     > ```bash
     > # Run the topo.py with Mininet
@@ -199,21 +193,19 @@ $ [sudo] ryu-manager controller.py --observe-links
     >
     >   #...
     > ```
-
-    1. Write another Ryu controller
+    2. Write another Ryu controller
     > Duplicate the example code `SimpleController.py` and name it `controller.py`.
     > ```bash
     > # Make sure the current directory is /root/Route_Configuration/src/
     > $ cp SimpleController.py controller.py
     > ```
-
-    1. Follow the forwarding rules in the below image and modify `controller.py`.
+    3. Follow the forwarding rules in the below image and modify `controller.py`.
     > ![Forwarding](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Forwarding.png)
     > ![msg1](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/msg1.png)
     > ![msg23](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/msg23.png)
 
 5. **Measurement**
-    1. Run topology with SimpleController.py
+   1. Run topology with SimpleController.py
     > Run `topo.py` in one terminal `FIRST`.
     > ```bash
     > # Make sure the current directory is /root/Route_Configuration/src/ 
@@ -226,8 +218,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > # Run the SimpleController.py with Ryu manager
     > $ [sudo] ryu-manager SimpleController.py --observe-links
     > ```
-
-    1. Measure the bandwidth
+   2. Measure the bandwidth
     > Use the following `iPerf commands` to measure the bandwidth in my network.
     > ```bash
     > # Run in the iPerf command in Mininet CLI
@@ -248,8 +239,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > # Make sure "RTNETLINK" is clean indeed
     > $ [sudo] mn -c
     > ```
-
-    1. Run topology with SimpleController.py
+   3. Run topology with controller.py
     > Run `topo.py` in one terminal `FIRST`.
     > ```bash
     > # Make sure the current directory is /root/Route_Configuration/src/
@@ -262,8 +252,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > # Run the SimpleController.py with Ryu manager
     > $ [sudo] ryu-manager controller.py --observe-links
     > ```
-
-    1. Measure the bandwidth
+   4. Measure the bandwidth
     > Use the following `iPerf commands` to measure the bandwidth in my network.
     > ```bash
     > # Run in the iPerf command in Mininet CLI
@@ -322,10 +311,24 @@ $ [sudo] ryu-manager controller.py --observe-links
     >
     > |    |SimpleController.py|controller.py|
     > |--- |-------------------|-------------|
-    > |Lost|20|26
+    > |Bandwidth|1.03Mbps|1.02Mbps|
+    > |Jitter|0.007ms|0.012ms|
+    > |Lost|20|26|
 
 8. Which forwarding rule is better? Why?
-
+    > ![Forwarding_Simple](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Forwarding_Simple.png)<br>
+    > ![Forwarding](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Forwarding.png)<br>
+    > <br>
+    > In my opinion, these two are almost the same. <br>
+    > If you calculate probability of packet loss, <br>
+    > in SimpleController.py, the success rate of sending packet from h2 to h1 is 98%; <br>
+    > in controller.py, the success rate of sending packet from h2 to h1 is 99%*99% = 98.01%. <br>
+    > Use controller.py to send packet from h2 to h1 looks better.<br>
+    > <br>
+    > But, the measurement result shows that using SimpleController.py has larger bandwidth.
+    > <br><br>
+    > So, If you need lower latency, use the forwarding rule of SimpleController.py; <br>
+    > however, if you need lower loss rate, use the forwarding rule of controller.py.
 ---
 ## References
 
