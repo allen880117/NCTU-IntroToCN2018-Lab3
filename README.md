@@ -56,10 +56,10 @@ $ [sudo] ryu-manager controller.py --observe-links
 >><br>
 
 > * Show the screenshot of using iPerf command in Mininet (both `SimpleController.py` and `controller.py`) <br>
->SimpleController.py <br>
->![Screenshot_iPerf](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf_cut.png) <br>
->controller.py <br>
->![Screenshot_iPerf2](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf2_cut.png)
+>>* SimpleController.py <br>
+>>![Screenshot_iPerf](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf_cut.png) <br>
+>>* controller.py <br>
+>>![Screenshot_iPerf2](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/iperf2_cut.png)
 
 ---
 ## Description
