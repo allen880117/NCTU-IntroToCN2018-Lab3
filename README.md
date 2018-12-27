@@ -305,7 +305,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     @set_ev_cls(ofp_event.EventOFPPacketIn, CONFIG_DISPATCHER)
     ```
     > `set_ev_cls`: Specifies the event class supporting the received message and the state of the OpenFlow switch for the argument (指定事件類別得以接受訊息和交換器狀態作為參數). <br>
-    > `ofp_event.EventOFPPacketIn` : Event of Packet-In message. <br> 
+    > `ofp_event.EventOFPPacketIn` : Event of Packet-In message (Packet-In 訊息的狀態下的事件). <br> 
     > `CONFIG_DISPATCHER` : Version negotiated and sent features-request message (版本協議以及送出 feature-request 訊息).
 
 5. What is the meaning of “datapath” in `controller.py`?
