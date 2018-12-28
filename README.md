@@ -291,13 +291,19 @@ $ [sudo] ryu-manager controller.py --observe-links
 
 4. Explain the following code in `controller.py`.
     ```python
-    @set_ev_cls(ofp_event.EventOFPPacketIn, CONFIG_DISPATCHER)
+    @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     ```
     > ||Explanation|
     > |---|---|
-    > `set_ev_cls()`| Specifies the event class supporting the received message and the state of the OpenFlow switch for the argument (指定事件類別得以接受訊息和交換器狀態作為參數).
-    > `ofp_event.EventOFPPacketIn` | Event of Packet-In message (Packet-In訊息的狀態下的事件).
-    > `CONFIG_DISPATCHER` | Waiting to receive SwitchFeatures message (等待接收SwitchFeatures訊息).
+    > |`@`| Syntactic sugar of using **decorator** |
+    > `set_ev_cls()`| A decorator for Ryu application to declare an event handler. |
+    > `ofp_event.EventOFPPacketIn` | Event of Packet-In message.|
+    > `MAIN_DISPATCHER` | Switch-features message received and sent set-config message.|
+    >
+    > Decorated method will become an event handler. ev_cls is an event class whose instances this RyuApp wants to receive. <br> 
+    > Dispatchers argument specifies one of the negotiation phases ( in this case is `MAIN_DISPATCHER` ) for which events ( in this case is `ofp_event.EventOFPPacketIn` ) should be generated for this handler.
+    > <br> <br>
+    > So, `@set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)` **decorate** the function, `packet_in_handler(self, ev)`.
 
 5. What is the meaning of “datapath” in `controller.py`?
    > The switch in the topology using OpenFlow.
@@ -354,6 +360,7 @@ $ [sudo] ryu-manager controller.py --observe-links
 * **Python**
     * [Python 2.7.15 Standard Library](https://docs.python.org/2/library/index.html)
     * [Python Tutorial - Tutorialspoint](https://www.tutorialspoint.com/python/)
+    * [理解 Python 装饰器看这一篇就够了](https://foofish.net/python-decorator.html?fbclid=IwAR3-MkSb4nyj7_QwlItb8e_B0zC55dNwymAuIs7qpWymY7MHkPp68KhAz84)
 * **Others**
     * [Cheat Sheet of Markdown Syntax](https://www.markdownguide.org/cheat-sheet)
     * [Vim Tutorial – Tutorialspoint](https://www.tutorialspoint.com/vim/index.htm)
