@@ -304,6 +304,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > Dispatchers argument specifies one of the negotiation phases ( in this case is `MAIN_DISPATCHER` ) for which events ( in this case is `ofp_event.EventOFPPacketIn` ) should be generated for this handler.
     > <br> <br>
     > So, `@set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)` **decorate** the function, `packet_in_handler(self, ev)`.
+    > <br><br>
 
 5. What is the meaning of “datapath” in `controller.py`?
    > The switch in the topology using OpenFlow.
