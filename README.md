@@ -156,7 +156,7 @@ $ [sudo] ryu-manager controller.py --observe-links
     > # Add links into topology
     > self.addLink(s1, h1, port1=1, port2=1)
     > self.addLink(s3, h2, port1=1, port2=1)
-    > self.addLink(s1, s3, port1=3, port2=2, bw = 10, delay = '5ms', loss = 2)
+    > self.addLink(s1, s3, port1=3, port2=2, bw = 3, delay = '10ms', loss = 3)
     > self.addLink(s1, s2, port1=2, port2=1, bw = 30, delay = '2ms', loss = 1)
     > self.addLink(s3, s2, port1=3, port2=2, bw = 20, delay = '2ms', loss = 1)
     > ```
@@ -320,24 +320,16 @@ $ [sudo] ryu-manager controller.py --observe-links
     >
     > |    |SimpleController.py|controller.py|
     > |--- |-------------------|-------------|
-    > |Bandwidth|1.03Mbps|1.02Mbps|
-    > |Jitter|0.007ms|0.012ms|
-    > |Lost|20|26|
+    > |Bandwidth|1.21Mbps|1.22Mbps|
+    > |Jitter|0.008ms|0.008ms|
+    > |Lost|31|21|
 
 8. Which forwarding rule is better? Why?
     > ![Forwarding_Simple](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Forwarding_Simple.png)<br>
     > ![Forwarding](https://github.com/nctucn/lab3-allen880117/blob/master/screenshots/Forwarding.png)<br>
     > <br>
-    > In my opinion, these two are almost the same. <br>
-    > If you calculate probability of packet loss, <br>
-    > in SimpleController.py, the success rate of sending packet from h2 to h1 is 98%; <br>
-    > in controller.py, the success rate of sending packet from h2 to h1 is 99%*99% = 98.01%. <br>
-    > Use controller.py to send packet from h2 to h1 looks better.<br>
-    > <br>
-    > But, the measurement result shows that using SimpleController.py has larger bandwidth.
-    > <br><br>
-    > So, If you need lower latency, use the forwarding rule of SimpleController.py; <br>
-    > however, if you need lower loss rate, use the forwarding rule of controller.py.
+    > The speed of two controller is almost same, however, at loss rate, controller.py is lower than SimpleController.py. <br>
+    > So, the forwarding rule of controller.py is better.
 ---
 ## References
 
